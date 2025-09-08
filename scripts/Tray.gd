@@ -13,3 +13,9 @@ func _process(delta: float) -> void:
 		elif player.velocity.x < 0:
 			target_offset = Vector2(-side_offset.x, side_offset.y)
 		position = position.lerp(target_offset, delta * smoothness)
+
+
+func _tray_entered(body: Node2D) -> void:
+	print(body.name)
+	if body.name.contains("Pizza"):
+		body.queue_free()

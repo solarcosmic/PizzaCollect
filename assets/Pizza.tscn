@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1naqcbb7q3w3"]
+
+[ext_resource type="Texture2D" uid="uid://d5gq534bw5ub" path="res://assets/pizza.png" id="1_oqsf1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1fif"]
+size = Vector2(100, 20)
+
+[node name="Pizza" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_oqsf1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l1fif")
