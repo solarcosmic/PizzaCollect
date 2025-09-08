@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cq6op1rwo6hub"]
+[gd_scene load_steps=20 format=3 uid="uid://cq6op1rwo6hub"]
 
 [ext_resource type="Script" uid="uid://byvi4xrhh62bc" path="res://scripts/Player.gd" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://4fvmupp2nlie" path="res://scripts/Game.gd" id="1_5vw27"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://c6e0bnbjrwi8p" path="res://scripts/Tray.gd" id="5_272bh"]
 [ext_resource type="PackedScene" uid="uid://bchfu3cbn1ere" path="res://assets/Block.tscn" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://cuyuek3hadsxc" path="res://scripts/Ground.gd" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://b2jnjltlfnkef" path="res://scripts/ControlGame.gd" id="9_kek77"]
+[ext_resource type="FontFile" uid="uid://b6ts3d5puiayg" path="res://assets/fonts/PixeloidSans.ttf" id="10_4c57u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7dm0k"]
 size = Vector2(16, 30)
@@ -62,6 +64,9 @@ size = Vector2(32, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
 size = Vector2(32, 32)
 
+[sub_resource type="LabelSettings" id="LabelSettings_efxa6"]
+font = ExtResource("10_4c57u")
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_5vw27")
 
@@ -110,6 +115,36 @@ script = ExtResource("8_5vw27")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/Ground/Area2D"]
 shape = SubResource("RectangleShape2D_kek77")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_kek77")
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 1260.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="PizzaCount" type="Label" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -42.0
+offset_top = 10.0
+offset_right = 42.0
+offset_bottom = 33.0
+grow_horizontal = 2
+text = "0 / 7 Pizzas"
+label_settings = SubResource("LabelSettings_efxa6")
 
 [connection signal="body_entered" from="CharacterBody2D/Tray/Area2D" to="CharacterBody2D/Tray" method="_tray_entered"]
 [connection signal="body_entered" from="Platform/Ground/Area2D" to="Platform/Ground" method="_ground_touched"]

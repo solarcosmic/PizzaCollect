@@ -15,6 +15,10 @@ run/main_scene="uid://cq6op1rwo6hub"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlPizza="*res://scripts/globals/GlPizza.gd"
+
 [display]
 
 window/size/viewport_width=1280

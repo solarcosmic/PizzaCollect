@@ -3,6 +3,8 @@ extends Sprite2D
 @export var side_offset: Vector2 = Vector2(30, 0)
 @export var idle_offset: Vector2 = Vector2(0, -20)
 @export var smoothness: float = 15.0
+@export var pizza_spacing: float = 10.0
+@export var max_pizzas: int = 7
 
 func _process(delta: float) -> void:
 	var player = get_parent()
@@ -17,5 +19,6 @@ func _process(delta: float) -> void:
 
 func _tray_entered(body: Node2D) -> void:
 	print(body.name)
-	if body.name.contains("Pizza"):
+	if body.name.contains("Pizza") and not GlPizza.is_at_max == true:
+		GlPizza.add_pizza_count()
 		body.queue_free()
