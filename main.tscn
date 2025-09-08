@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://cq6op1rwo6hub"]
+
+[ext_resource type="Script" uid="uid://byvi4xrhh62bc" path="res://scripts/Player.gd" id="1_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://d5gq534bw5ub" path="res://assets/pizza.png" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://ckjnq02pg18j6" path="res://assets/green_dude.png" id="2_lquwl"]
+[ext_resource type="Texture2D" uid="uid://ng0lhxxvdewv" path="res://assets/green_dude-Sheet.png" id="3_7mycd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dm0k"]
+size = Vector2(16, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_272bh"]
+atlas = ExtResource("3_7mycd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vw27"]
+atlas = ExtResource("3_7mycd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kek77"]
+atlas = ExtResource("3_7mycd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c57u"]
+atlas = ExtResource("3_7mycd")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_efxa6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lquwl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_272bh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vw27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kek77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4c57u")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(150, 475)
+scale = Vector2(5, 5)
+script = ExtResource("1_1bvp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_7dm0k")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+visible = false
+position = Vector2(0, -1)
+texture = ExtResource("2_lquwl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_efxa6")
+animation = &"run"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(640, 360)
+
+[node name="Pizzas" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Pizzas"]
+position = Vector2(562, 390)
+scale = Vector2(3, 3)
+texture = ExtResource("1_ig7tw")
