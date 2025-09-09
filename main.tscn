@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cq6op1rwo6hub"]
+[gd_scene load_steps=43 format=3 uid="uid://cq6op1rwo6hub"]
 
 [ext_resource type="Script" uid="uid://byvi4xrhh62bc" path="res://scripts/Player.gd" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://4fvmupp2nlie" path="res://scripts/Game.gd" id="1_5vw27"]
@@ -17,6 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://c8ed5qua0sofl" path="res://assets/red_gradient.png" id="11_efxa6"]
 [ext_resource type="AudioStream" uid="uid://cmuauv7vghylo" path="res://assets/sounds/collect_coin.ogg" id="13_w48qg"]
 [ext_resource type="Texture2D" uid="uid://dcfef3qwix1ae" path="res://assets/coin_blue.png" id="15_2cqfq"]
+[ext_resource type="Texture2D" uid="uid://b1635qlqdsvdg" path="res://assets/board.png" id="17_074og"]
+[ext_resource type="Texture2D" uid="uid://dcng2glgn4kfe" path="res://assets/button.png" id="18_82xsv"]
+[ext_resource type="Texture2D" uid="uid://b4yikpbbuyd46" path="res://assets/button_hover.png" id="19_getpj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7dm0k"]
 size = Vector2(16, 30)
@@ -85,6 +88,27 @@ font = ExtResource("10_4c57u")
 font = ExtResource("10_4c57u")
 font_size = 24
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cegan"]
+texture = ExtResource("17_074og")
+
+[sub_resource type="LabelSettings" id="LabelSettings_82xsv"]
+font = ExtResource("10_4c57u")
+font_size = 32
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ryguw"]
+font = ExtResource("10_4c57u")
+font_size = 24
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_d13ii"]
+font = ExtResource("10_4c57u")
+font_size = 24
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_efxa6"]
 size = Vector2(200, 200)
 
@@ -101,6 +125,11 @@ font_color = Color(0, 1, 0, 1)
 font = ExtResource("10_4c57u")
 font_size = 32
 font_color = Color(0.952941, 0, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_getpj"]
+font = ExtResource("10_4c57u")
+font_size = 32
+font_color = Color(0.952941, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_yaehf"]
 font = ExtResource("10_4c57u")
@@ -260,7 +289,7 @@ label_settings = SubResource("LabelSettings_cegan")
 horizontal_alignment = 1
 
 [node name="Countdown" type="Timer" parent="Control/Panel"]
-wait_time = 120.0
+wait_time = 45.0
 one_shot = true
 
 [node name="BaseGet" type="AudioStreamPlayer" parent="Control/Panel"]
@@ -275,6 +304,119 @@ autostart = true
 position = Vector2(1128, 40)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("15_2cqfq")
+
+[node name="StatsScreen" type="Panel" parent="Control"]
+z_index = 25
+layout_mode = 0
+offset_left = 1456.0
+offset_top = 120.0
+offset_right = 1976.0
+offset_bottom = 600.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_cegan")
+
+[node name="Title" type="Label" parent="Control/StatsScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -208.0
+offset_right = 97.0
+offset_bottom = -168.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Finish!"
+label_settings = SubResource("LabelSettings_82xsv")
+horizontal_alignment = 1
+
+[node name="Stats" type="Label" parent="Control/StatsScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -216.0
+offset_top = -144.0
+offset_right = 136.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Coins Collected: 0
+Pizzas Collected: 0
+Mythic Pizzas Collected: 0
+Blue Gifts Collected: 0
+Difficulty: Normal"
+label_settings = SubResource("LabelSettings_ryguw")
+
+[node name="MainMenuButton" type="TextureButton" parent="Control/StatsScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = 56.0
+offset_right = -16.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("18_82xsv")
+texture_hover = ExtResource("19_getpj")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Control/StatsScreen/MainMenuButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -15.0
+offset_right = 26.5
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Main Menu"
+label_settings = SubResource("LabelSettings_d13ii")
+horizontal_alignment = 1
+
+[node name="PlayAgainButton" type="TextureButton" parent="Control/StatsScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 56.0
+offset_right = 224.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("18_82xsv")
+texture_hover = ExtResource("19_getpj")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Control/StatsScreen/PlayAgainButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -15.0
+offset_right = 26.5
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play Again"
+label_settings = SubResource("LabelSettings_d13ii")
+horizontal_alignment = 1
 
 [node name="Base" type="Sprite2D" parent="."]
 z_index = -1
@@ -311,6 +453,13 @@ offset_bottom = -88.0
 text = "+4"
 label_settings = SubResource("LabelSettings_074og")
 
+[node name="MinusDanger" type="Label" parent="Extras"]
+offset_top = -176.0
+offset_right = 40.0
+offset_bottom = -136.0
+text = "-1"
+label_settings = SubResource("LabelSettings_getpj")
+
 [node name="PlusCurrency" type="Label" parent="Extras"]
 offset_top = -80.0
 offset_right = 40.0
@@ -326,4 +475,6 @@ texture = ExtResource("15_2cqfq")
 [connection signal="body_entered" from="Player/Tray/Area2D" to="Player/Tray" method="_tray_entered"]
 [connection signal="body_entered" from="Platform/Ground/Area2D" to="Platform/Ground" method="_ground_touched"]
 [connection signal="timeout" from="Control/Panel/BlueGiftTimer" to="." method="_on_blue_gift_timer_timeout"]
+[connection signal="button_up" from="Control/StatsScreen/MainMenuButton" to="." method="_on_main_menu_button_up"]
+[connection signal="button_up" from="Control/StatsScreen/PlayAgainButton" to="." method="_on_play_again_button_up"]
 [connection signal="body_entered" from="Base/Area2D" to="." method="_base_entered"]

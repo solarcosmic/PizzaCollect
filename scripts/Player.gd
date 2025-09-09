@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-const SPEED = 450.0
-const JUMP_VELOCITY = -400.0
+var SPEED = 450.0
+const JUMP_VELOCITY = 0.0
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:
@@ -28,3 +28,6 @@ func _physics_process(delta: float) -> void:
 		animation.play("idle")
 
 	move_and_slide()
+
+func _ready() -> void:
+	if GlPizza.difficulty == "Hard": SPEED *= 2

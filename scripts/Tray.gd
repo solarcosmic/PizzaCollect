@@ -24,11 +24,19 @@ func _tray_entered(body: Node2D) -> void:
 		if has_finished_blue_gift == true:
 			has_finished_blue_gift = false
 			GlPizza.is_blue_gift_mode = true
-			GlPizza.pizza_time_yield = 0.5
 			$"../../Control/Panel/SfxPickupGift".play()
-			GlPizza.send_incoming_message("Pizzas spawn at double the speed for 10 seconds!", 9)
-			await GlPizza.wait(10)
-			GlPizza.pizza_time_yield = 1.0
+			GlPizza.total_blue_gifts_collected += 1
+			var random = randi() % 100
+			if random < 50:
+				var original_yield = GlPizza.pizza_time_yield
+				GlPizza.pizza_time_yield = 0.5
+				GlPizza.send_incoming_message("Pizzas spawn at double the speed for 10 seconds!", 9)
+				await GlPizza.wait(10)
+				GlPizza.pizza_time_yield = original_yield
+			elif random >= 50:
+				GlPizza.max_pizzas += 5
+				GlPizza.update_pizza_count()
+				GlPizza.send_incoming_message("Your capacity has increased by 5!", 3.5)
 			GlPizza.is_blue_gift_mode = false
 			has_finished_blue_gift = true
 	elif body.name.contains("MythicPizza") and GlPizza.pizzas < GlPizza.max_pizzas:
@@ -41,6 +49,18 @@ func _tray_entered(body: Node2D) -> void:
 		get_tree().create_tween().tween_property(plusmythic, "modulate:a", 0, 0.5)
 		await GlPizza.wait(0.5)
 		plusmythic.queue_free()
+	elif body.name.contains("DangerPizza"):
+		var minusdanger = $"../../Extras/MinusDanger".duplicate()
+		minusdanger.position = body.position + Vector2(0, -30)
+		body.queue_free()
+		minusdanger.text = "-" + str(GlPizza.pizzas)
+		GlPizza.set_pizza_count(0)
+		$"../../Base".texture = load("res://assets/red_gradient.png")
+		$"../../Extras".add_child(minusdanger)
+		$"../../Control/Panel/GetPizza".play() # change
+		get_tree().create_tween().tween_property(minusdanger, "modulate:a", 0, 0.5)
+		await GlPizza.wait(0.5)
+		minusdanger.queue_free()
 	elif body.name.contains("Pizza") and GlPizza.pizzas < GlPizza.max_pizzas:
 		GlPizza.add_pizza_count("normal")
 		var plusone = $"../../Extras/PlusOne".duplicate()

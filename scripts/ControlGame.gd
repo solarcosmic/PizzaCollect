@@ -4,6 +4,7 @@ var is_playing_final_countdown_music = false
 
 func _ready() -> void:
 	GlPizza.connect("pizza_count_changed", _on_pizza_count_change)
+	GlPizza.connect("game_finished", _on_game_finished)
 	$Panel/Countdown.start()
 
 func _on_pizza_count_change(count: int, max: int):
@@ -36,6 +37,11 @@ func _process(delta):
 		if is_victory_playing == true: return
 		is_victory_playing = true
 		GlPizza.is_game_ongoing = false
+		GlPizza.set_game_finished()
 		$Panel/PizzaCount.text = "Time's up!"
 		$Panel/Victory.volume_db = 5
 		$Panel/Victory.play()
+
+func _on_game_finished():
+	$StatsScreen/Stats.text = "Coins Collected: " + str(GlPizza.currency_this_round) + "\nPizzas Collected: " + str(GlPizza.total_pizzas_collected) + "\nMythic Pizzas Collected: " + str(GlPizza.total_mythic_pizzas_collected) + "\nBlue Gifts Collected: " + str(GlPizza.total_blue_gifts_collected) + "\nDifficulty: " + str(GlPizza.difficulty)
+	get_tree().create_tween().tween_property($StatsScreen, "position", Vector2(380, 120), 1)

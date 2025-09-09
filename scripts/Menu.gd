@@ -30,3 +30,5 @@ func _on_exit_button_up() -> void:
 	get_tree().create_tween().tween_property($Panel/ExitButton, "position", Vector2($Panel/ExitButton.position.x, 750), 0.5).set_trans(Tween.TRANS_ELASTIC)
 	get_tree().create_tween().tween_property($Panel/PlayButton, "position", Vector2(1580, $Panel/PlayButton.position.y), 0.25).set_trans(Tween.TRANS_SINE)
 	get_tree().create_tween().tween_property($Panel/SettingsButton, "position", Vector2(1580, $Panel/SettingsButton.position.y), 0.25).set_trans(Tween.TRANS_SINE)
+	await GlPizza.wait(1.0)
+	get_tree().quit()
