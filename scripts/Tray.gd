@@ -17,8 +17,37 @@ func _process(delta: float) -> void:
 		position = position.lerp(target_offset, delta * smoothness)
 
 
+var has_finished_blue_gift = true
 func _tray_entered(body: Node2D) -> void:
 	print(body.name)
-	if body.name.contains("Pizza") and not GlPizza.is_at_max == true:
-		GlPizza.add_pizza_count()
+	if body.name.contains("BlueGiftPizza"):
+		if has_finished_blue_gift == true:
+			has_finished_blue_gift = false
+			GlPizza.is_blue_gift_mode = true
+			GlPizza.pizza_time_yield = 0.5
+			$"../../Control/Panel/SfxPickupGift".play()
+			GlPizza.send_incoming_message("Pizzas spawn at double the speed for 10 seconds!", 9)
+			await GlPizza.wait(10)
+			GlPizza.pizza_time_yield = 1.0
+			GlPizza.is_blue_gift_mode = false
+			has_finished_blue_gift = true
+	elif body.name.contains("MythicPizza") and GlPizza.pizzas < GlPizza.max_pizzas:
+		GlPizza.add_pizza_count("mythic")
+		var plusmythic = $"../../Extras/PlusMythic".duplicate()
+		plusmythic.position = body.position + Vector2(0, -30)
 		body.queue_free()
+		$"../../Extras".add_child(plusmythic)
+		$"../../Control/Panel/GetPizza".play()
+		get_tree().create_tween().tween_property(plusmythic, "modulate:a", 0, 0.5)
+		await GlPizza.wait(0.5)
+		plusmythic.queue_free()
+	elif body.name.contains("Pizza") and GlPizza.pizzas < GlPizza.max_pizzas:
+		GlPizza.add_pizza_count("normal")
+		var plusone = $"../../Extras/PlusOne".duplicate()
+		plusone.position = body.position + Vector2(0, -30)
+		body.queue_free()
+		$"../../Extras".add_child(plusone)
+		$"../../Control/Panel/GetPizza".play()
+		get_tree().create_tween().tween_property(plusone, "modulate:a", 0, 0.5)
+		await GlPizza.wait(0.5)
+		plusone.queue_free()

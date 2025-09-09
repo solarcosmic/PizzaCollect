@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0rr4equgp7cu"]
+
+[ext_resource type="Texture2D" uid="uid://4w4gduj0q7nn" path="res://assets/blue_gift.png" id="1_ooo02"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1fif"]
+size = Vector2(100, 100)
+
+[node name="Pizza" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_ooo02")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l1fif")

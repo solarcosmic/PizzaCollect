@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bofv48u42xpbf"]
+
+[ext_resource type="Texture2D" uid="uid://cqjlv5a1eiv3j" path="res://assets/mythic-pizza.png" id="1_iulbg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1fif"]
+size = Vector2(100, 20)
+
+[node name="MythicPizza" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_iulbg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l1fif")

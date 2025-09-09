@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cq6op1rwo6hub"]
+[gd_scene load_steps=35 format=3 uid="uid://cq6op1rwo6hub"]
 
 [ext_resource type="Script" uid="uid://byvi4xrhh62bc" path="res://scripts/Player.gd" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://4fvmupp2nlie" path="res://scripts/Game.gd" id="1_5vw27"]
@@ -10,6 +10,13 @@
 [ext_resource type="Script" uid="uid://cuyuek3hadsxc" path="res://scripts/Ground.gd" id="8_5vw27"]
 [ext_resource type="Script" uid="uid://b2jnjltlfnkef" path="res://scripts/ControlGame.gd" id="9_kek77"]
 [ext_resource type="FontFile" uid="uid://b6ts3d5puiayg" path="res://assets/fonts/PixeloidSans.ttf" id="10_4c57u"]
+[ext_resource type="AudioStream" uid="uid://c76qp1en7qvay" path="res://assets/sounds/something_updated.ogg" id="10_dg77c"]
+[ext_resource type="AudioStream" uid="uid://b6hpckpbfdfjg" path="res://assets/sounds/get_pizza.ogg" id="10_vivmo"]
+[ext_resource type="AudioStream" uid="uid://dqahcdl342lsn" path="res://assets/sounds/sfx_pickup_gift.ogg" id="10_yaehf"]
+[ext_resource type="AudioStream" uid="uid://dvt16r8cx7u0s" path="res://assets/sounds/victory.ogg" id="10_ycdy4"]
+[ext_resource type="Texture2D" uid="uid://c8ed5qua0sofl" path="res://assets/red_gradient.png" id="11_efxa6"]
+[ext_resource type="AudioStream" uid="uid://cmuauv7vghylo" path="res://assets/sounds/collect_coin.ogg" id="13_w48qg"]
+[ext_resource type="Texture2D" uid="uid://dcfef3qwix1ae" path="res://assets/coin_blue.png" id="15_2cqfq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7dm0k"]
 size = Vector2(16, 30)
@@ -66,37 +73,70 @@ size = Vector2(32, 32)
 
 [sub_resource type="LabelSettings" id="LabelSettings_efxa6"]
 font = ExtResource("10_4c57u")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_2cqfq"]
+font = ExtResource("10_4c57u")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ycdy4"]
+font = ExtResource("10_4c57u")
+
+[sub_resource type="LabelSettings" id="LabelSettings_cegan"]
+font = ExtResource("10_4c57u")
+font_size = 24
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efxa6"]
+size = Vector2(200, 200)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dg77c"]
+font = ExtResource("10_4c57u")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_w48qg"]
+font = ExtResource("10_4c57u")
+font_size = 32
+font_color = Color(0, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_074og"]
+font = ExtResource("10_4c57u")
+font_size = 32
+font_color = Color(0.952941, 0, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yaehf"]
+font = ExtResource("10_4c57u")
+font_size = 32
+font_color = Color(0, 1, 1, 1)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_5vw27")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(150, 475)
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(472, 536)
 scale = Vector2(5, 5)
 script = ExtResource("1_1bvp3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_7dm0k")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
 visible = false
 position = Vector2(0, -1)
 texture = ExtResource("2_lquwl")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_efxa6")
 animation = &"run"
 
-[node name="Tray" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Tray" type="Sprite2D" parent="Player"]
 position = Vector2(27.6, 1)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("5_7mycd")
 script = ExtResource("5_272bh")
 
-[node name="Area2D" type="Area2D" parent="CharacterBody2D/Tray"]
+[node name="Area2D" type="Area2D" parent="Player/Tray"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Tray/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Tray/Area2D"]
 shape = SubResource("RectangleShape2D_272bh")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -124,16 +164,30 @@ offset_bottom = 40.0
 script = ExtResource("9_kek77")
 
 [node name="Panel" type="Panel" parent="Control"]
+z_index = 5
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -20.0
 offset_right = 1260.0
-offset_bottom = 40.0
+offset_bottom = 80.0
 grow_horizontal = 2
 
-[node name="PizzaCount" type="Label" parent="Control/Panel"]
+[node name="SfxPickupGift" type="AudioStreamPlayer" parent="Control/Panel"]
+stream = ExtResource("10_yaehf")
+
+[node name="GetPizza" type="AudioStreamPlayer" parent="Control/Panel"]
+stream = ExtResource("10_vivmo")
+
+[node name="Victory" type="AudioStreamPlayer" parent="Control/Panel"]
+stream = ExtResource("10_ycdy4")
+
+[node name="SomethingUpdated" type="AudioStreamPlayer" parent="Control/Panel"]
+stream = ExtResource("10_dg77c")
+
+[node name="Count" type="Label" parent="Control/Panel"]
+z_index = 6
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -143,8 +197,133 @@ offset_top = 10.0
 offset_right = 42.0
 offset_bottom = 33.0
 grow_horizontal = 2
-text = "0 / 7 Pizzas"
+text = "00:00"
+label_settings = SubResource("LabelSettings_efxa6")
+horizontal_alignment = 1
+
+[node name="Currency" type="Label" parent="Control/Panel"]
+z_index = 6
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 528.0
+offset_top = 10.0
+offset_right = 620.0
+offset_bottom = 50.0
+grow_horizontal = 2
+text = "0"
 label_settings = SubResource("LabelSettings_efxa6")
 
-[connection signal="body_entered" from="CharacterBody2D/Tray/Area2D" to="CharacterBody2D/Tray" method="_tray_entered"]
+[node name="CurrencyTotal" type="Label" parent="Control/Panel"]
+z_index = 6
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 528.0
+offset_top = 46.0
+offset_right = 620.0
+offset_bottom = 86.0
+grow_horizontal = 2
+text = "Total: 0"
+label_settings = SubResource("LabelSettings_2cqfq")
+
+[node name="PizzaCount" type="Label" parent="Control/Panel"]
+z_index = 6
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -52.5
+offset_top = 50.0
+offset_right = 52.5
+offset_bottom = 73.0
+grow_horizontal = 2
+text = "0 / 7 Pizzas"
+label_settings = SubResource("LabelSettings_ycdy4")
+horizontal_alignment = 1
+
+[node name="IncomingMessage" type="Label" parent="Control/Panel"]
+z_index = 6
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -224.0
+offset_top = 120.0
+offset_right = 221.0
+offset_bottom = 150.0
+grow_horizontal = 2
+text = "Your capacity has increased by 5!"
+label_settings = SubResource("LabelSettings_cegan")
+horizontal_alignment = 1
+
+[node name="Countdown" type="Timer" parent="Control/Panel"]
+wait_time = 120.0
+one_shot = true
+
+[node name="BaseGet" type="AudioStreamPlayer" parent="Control/Panel"]
+stream = ExtResource("13_w48qg")
+
+[node name="BlueGiftTimer" type="Timer" parent="Control/Panel"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Panel"]
+position = Vector2(1128, 40)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("15_2cqfq")
+
+[node name="Base" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(90, 518)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("11_efxa6")
+
+[node name="Area2D" type="Area2D" parent="Base"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Base/Area2D"]
+shape = SubResource("RectangleShape2D_efxa6")
+
+[node name="Label" type="Label" parent="Base"]
+offset_left = -37.7778
+offset_top = -175.556
+offset_right = 47.2222
+offset_bottom = -135.556
+text = "Base"
+label_settings = SubResource("LabelSettings_dg77c")
+
+[node name="Extras" type="Node2D" parent="."]
+
+[node name="PlusOne" type="Label" parent="Extras"]
+offset_top = -32.0
+offset_right = 40.0
+offset_bottom = -9.0
+text = "+1"
+label_settings = SubResource("LabelSettings_w48qg")
+
+[node name="PlusMythic" type="Label" parent="Extras"]
+offset_top = -128.0
+offset_right = 40.0
+offset_bottom = -88.0
+text = "+4"
+label_settings = SubResource("LabelSettings_074og")
+
+[node name="PlusCurrency" type="Label" parent="Extras"]
+offset_top = -80.0
+offset_right = 40.0
+offset_bottom = -40.0
+text = "+1"
+label_settings = SubResource("LabelSettings_yaehf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Extras/PlusCurrency"]
+position = Vector2(-22, 20)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("15_2cqfq")
+
+[connection signal="body_entered" from="Player/Tray/Area2D" to="Player/Tray" method="_tray_entered"]
 [connection signal="body_entered" from="Platform/Ground/Area2D" to="Platform/Ground" method="_ground_touched"]
+[connection signal="timeout" from="Control/Panel/BlueGiftTimer" to="." method="_on_blue_gift_timer_timeout"]
+[connection signal="body_entered" from="Base/Area2D" to="." method="_base_entered"]

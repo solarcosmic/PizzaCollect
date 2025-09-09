@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="PizzaCollect"
-run/main_scene="uid://cq6op1rwo6hub"
+run/main_scene="uid://dwbr6gctt250g"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
