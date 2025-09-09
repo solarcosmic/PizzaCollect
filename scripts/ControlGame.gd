@@ -43,5 +43,6 @@ func _process(delta):
 		$Panel/Victory.play()
 
 func _on_game_finished():
+	$"../Player".SPEED = 0.0
 	$StatsScreen/Stats.text = "Coins Collected: " + str(GlPizza.currency_this_round) + "\nPizzas Collected: " + str(GlPizza.total_pizzas_collected) + "\nMythic Pizzas Collected: " + str(GlPizza.total_mythic_pizzas_collected) + "\nBlue Gifts Collected: " + str(GlPizza.total_blue_gifts_collected) + "\nDifficulty: " + str(GlPizza.difficulty)
 	get_tree().create_tween().tween_property($StatsScreen, "position", Vector2(380, 120), 1)

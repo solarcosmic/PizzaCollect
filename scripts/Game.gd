@@ -8,12 +8,25 @@ const danger_pizza = preload("res://assets/DangerPizza.tscn")
 @onready var blue_gift_timer : Timer = $Control/Panel/BlueGiftTimer
 
 func _ready() -> void:
+	$Control/Panel/Leaving.modulate.a = 0
 	$Control/Panel/IncomingMessage.modulate.a = 0
 	$Control/Panel/CurrencyTotal.text = "Total: " + str(GlPizza.currency_total)
 	GlPizza.connect("currency_count_changed", _on_currency_count_change)
 	GlPizza.connect("incoming_message_update", _on_incoming_message_update)
 	do_difficulty_stuff()
 	await _do_loop()
+
+var hold_time = 0
+func _process(delta: float) -> void:
+	if Input.is_key_pressed(KEY_ESCAPE):
+		$Control/Panel/Leaving.modulate.a = 1
+		hold_time += delta
+		if hold_time >= 2.0:
+			GlPizza.reset_state()
+			get_tree().change_scene_to_file("res://menu.tscn")
+	else:
+		hold_time = 0.0
+		$Control/Panel/Leaving.modulate.a = 0
 
 var mythic_pizza_spawn_threshold = 98 # 98
 
@@ -30,20 +43,20 @@ func _do_loop():
 				var cloned = mythic_pizza.instantiate()
 				$Pizzas.add_child(cloned)
 				cloned.position = Vector2(range, -10)
-				if GlPizza.difficulty == "Hard": cloned.set_gravity_scale(3.0)
+				if GlPizza.difficulty == "Hard": cloned.set_gravity_scale(2.0)
 				cloned.name = "MythicPizza"
 				cloned.add_collision_exception_with($Player)
 			if (randi() % 100) >= danger_pizza_probability:
 				var cloned = danger_pizza.instantiate()
 				$Pizzas.add_child(cloned)
 				cloned.position = Vector2((randi() % 880 + 300), -10)
-				if GlPizza.difficulty == "Hard": cloned.set_gravity_scale(3.0)
+				if GlPizza.difficulty == "Hard": cloned.set_gravity_scale(2.0)
 				cloned.name = "DangerPizza"
 				cloned.add_collision_exception_with($Player)
 			var cloned = pizza.instantiate()
 			$Pizzas.add_child(cloned)
 			cloned.position = Vector2((randi() % 880 + 300), -10)
-			if GlPizza.difficulty == "Hard": cloned.set_gravity_scale(3.0)
+			if GlPizza.difficulty == "Hard": cloned.set_gravity_scale(2.0)
 			cloned.name = "Pizza"
 			cloned.add_collision_exception_with($Player)
 		await GlPizza.wait(GlPizza.pizza_time_yield)
@@ -76,7 +89,7 @@ func _on_blue_gift_timer_timeout() -> void:
 	var cloned = blue_gift.instantiate()
 	$Pizzas.add_child(cloned)
 	cloned.position = Vector2((randi() % 880 + 300), -10)
-	if GlPizza.difficulty == "Hard": cloned.set_gravity_scale(3.0)
+	if GlPizza.difficulty == "Hard": cloned.set_gravity_scale(2.0)
 	cloned.name = "BlueGiftPizza"
 	cloned.add_collision_exception_with($Player)
 	var wait_time = randi() % 30 + 17.5

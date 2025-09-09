@@ -29,7 +29,6 @@ var _default_values := {
 	"total_pizzas_collected": 0,
 	"total_mythic_pizzas_collected": 0,
 	"total_blue_gifts_collected": 0,
-	"difficulty": "Normal"
 }
 
 func reset_state():

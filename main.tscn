@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cq6op1rwo6hub"]
+[gd_scene load_steps=44 format=3 uid="uid://cq6op1rwo6hub"]
 
 [ext_resource type="Script" uid="uid://byvi4xrhh62bc" path="res://scripts/Player.gd" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://4fvmupp2nlie" path="res://scripts/Game.gd" id="1_5vw27"]
@@ -135,6 +135,8 @@ font_color = Color(0.952941, 0, 0, 1)
 font = ExtResource("10_4c57u")
 font_size = 32
 font_color = Color(0, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82xsv"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_5vw27")
@@ -288,8 +290,16 @@ text = "Your capacity has increased by 5!"
 label_settings = SubResource("LabelSettings_cegan")
 horizontal_alignment = 1
 
+[node name="Leaving" type="Label" parent="Control/Panel"]
+z_index = 6
+layout_mode = 1
+offset_right = 445.0
+offset_bottom = 30.0
+text = "Leaving..."
+label_settings = SubResource("LabelSettings_cegan")
+
 [node name="Countdown" type="Timer" parent="Control/Panel"]
-wait_time = 45.0
+wait_time = 120.0
 one_shot = true
 
 [node name="BaseGet" type="AudioStreamPlayer" parent="Control/Panel"]
@@ -471,6 +481,24 @@ label_settings = SubResource("LabelSettings_yaehf")
 position = Vector2(-22, 20)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("15_2cqfq")
+
+[node name="Boundary" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Boundary"]
+position = Vector2(-10, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary/StaticBody2D"]
+position = Vector2(2, 174)
+scale = Vector2(1, 46)
+shape = SubResource("RectangleShape2D_82xsv")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Boundary"]
+position = Vector2(1288, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary/StaticBody2D2"]
+position = Vector2(2, 174)
+scale = Vector2(1, 46)
+shape = SubResource("RectangleShape2D_82xsv")
 
 [connection signal="body_entered" from="Player/Tray/Area2D" to="Player/Tray" method="_tray_entered"]
 [connection signal="body_entered" from="Platform/Ground/Area2D" to="Platform/Ground" method="_ground_touched"]

@@ -1,0 +1,446 @@
+[gd_scene load_steps=18 format=3 uid="uid://cbc7laa40sskg"]
+
+[ext_resource type="Script" uid="uid://c6elbww0yw1lm" path="res://scripts/Intro.gd" id="1_dk2oa"]
+[ext_resource type="FontFile" uid="uid://b6ts3d5puiayg" path="res://assets/fonts/PixeloidSans.ttf" id="1_s2ta7"]
+[ext_resource type="Texture2D" uid="uid://bwbnmaoy4cenf" path="res://assets/screenshots/Screenshot_20250909_154134.png" id="2_ayt76"]
+[ext_resource type="Texture2D" uid="uid://bm360p5e6215r" path="res://assets/screenshots/Screenshot_20250909_154439.png" id="3_7a8ye"]
+[ext_resource type="Texture2D" uid="uid://nmyji220twm1" path="res://assets/screenshots/Screenshot_20250909_202306.png" id="4_0a7ni"]
+[ext_resource type="Texture2D" uid="uid://bkkhha2184p2r" path="res://assets/screenshots/Screenshot_20250909_163823.png" id="5_y72e6"]
+[ext_resource type="Texture2D" uid="uid://dfrquede2djfr" path="res://assets/screenshots/Screenshot_20250909_211900.png" id="6_dpxxx"]
+[ext_resource type="Texture2D" uid="uid://dcng2glgn4kfe" path="res://assets/button.png" id="6_y6ycx"]
+[ext_resource type="Texture2D" uid="uid://b4yikpbbuyd46" path="res://assets/button_hover.png" id="7_dpxxx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s2ta7"]
+font = ExtResource("1_s2ta7")
+font_size = 32
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_y72e6"]
+font = ExtResource("1_s2ta7")
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7a8ye"]
+font = ExtResource("1_s2ta7")
+font_size = 24
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0a7ni"]
+font = ExtResource("1_s2ta7")
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_u2rf6"]
+font = ExtResource("1_s2ta7")
+font_color = Color(0.605274, 0.605274, 0.605274, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dpxxx"]
+font = ExtResource("1_s2ta7")
+font_size = 12
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_y6ycx"]
+font = ExtResource("1_s2ta7")
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dk2oa"]
+font = ExtResource("1_s2ta7")
+font_size = 24
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_dk2oa")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -608.0
+offset_top = -336.0
+offset_right = -476.0
+offset_bottom = -296.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Tutorial"
+label_settings = SubResource("LabelSettings_s2ta7")
+
+[node name="Label2" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -608.0
+offset_top = -280.0
+offset_right = -209.0
+offset_bottom = -237.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Use WASD, arrow keys, or a joystick to move!
+Refer to the previous screen for gamemodes.
+Hold down ESC (Escape) for 2 seconds to quit."
+label_settings = SubResource("LabelSettings_y72e6")
+
+[node name="Gifts" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_top = -16.0
+offset_right = 40.0
+offset_bottom = 24.0
+
+[node name="Label3" type="Label" parent="Panel/Gifts"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 28.0
+offset_top = 252.0
+offset_right = 354.0
+offset_bottom = 292.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Collect gifts to get perks!"
+label_settings = SubResource("LabelSettings_7a8ye")
+
+[node name="Label4" type="Label" parent="Panel/Gifts"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 28.0
+offset_top = 292.0
+offset_right = 354.0
+offset_bottom = 335.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "- x2 Pizza Gravity
+- +5 Capacity"
+label_settings = SubResource("LabelSettings_0a7ni")
+
+[node name="Label5" type="Label" parent="Panel/Gifts"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 28.0
+offset_top = 340.0
+offset_right = 366.0
+offset_bottom = 383.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Both are 50% chance, Normal and Hard."
+label_settings = SubResource("LabelSettings_0a7ni")
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/Gifts"]
+position = Vector2(232, 536)
+scale = Vector2(0.72, 0.72)
+texture = ExtResource("2_ayt76")
+
+[node name="Mystic" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_left = 392.0
+offset_top = -16.0
+offset_right = 432.0
+offset_bottom = 24.0
+
+[node name="Label3" type="Label" parent="Panel/Mystic"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 28.0
+offset_top = 252.0
+offset_right = 382.0
+offset_bottom = 292.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Mystic Pizzas are the best!"
+label_settings = SubResource("LabelSettings_7a8ye")
+
+[node name="Label4" type="Label" parent="Panel/Mystic"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 28.0
+offset_top = 292.0
+offset_right = 436.0
+offset_bottom = 358.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "In both Normal and Hard mode, Mystic
+Pizzas give +4 compared to regular
+pizzas (+1). 2% chance in both gamemodes."
+label_settings = SubResource("LabelSettings_0a7ni")
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/Mystic"]
+position = Vector2(232, 536)
+scale = Vector2(0.72, 0.72)
+texture = ExtResource("3_7a8ye")
+
+[node name="Danger" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_left = 792.0
+offset_top = -16.0
+offset_right = 832.0
+offset_bottom = 24.0
+
+[node name="Label3" type="Label" parent="Panel/Danger"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 28.0
+offset_top = 252.0
+offset_right = 354.0
+offset_bottom = 292.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Avoid Danger Pizzas!"
+label_settings = SubResource("LabelSettings_7a8ye")
+
+[node name="Label4" type="Label" parent="Panel/Danger"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 28.0
+offset_top = 292.0
+offset_right = 391.0
+offset_bottom = 358.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Last but not least, avoid Danger Pizzas!
+They clear away the pizzas that you hold."
+label_settings = SubResource("LabelSettings_0a7ni")
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/Danger"]
+position = Vector2(232, 536)
+scale = Vector2(0.72, 0.72)
+texture = ExtResource("4_0a7ni")
+
+[node name="Coins" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_left = 776.0
+offset_top = -248.0
+offset_right = 816.0
+offset_bottom = -208.0
+
+[node name="Label3" type="Label" parent="Panel/Coins"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 28.0
+offset_top = 252.0
+offset_right = 354.0
+offset_bottom = 292.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Coins!"
+label_settings = SubResource("LabelSettings_7a8ye")
+
+[node name="Label4" type="Label" parent="Panel/Coins"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 28.0
+offset_top = 292.0
+offset_right = 391.0
+offset_bottom = 381.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Later on, coins may
+serve a purpose, so
+keep grinding!
+*(ahem upgrades)*"
+label_settings = SubResource("LabelSettings_0a7ni")
+
+[node name="Label5" type="Label" parent="Panel/Coins"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 36.0
+offset_top = 396.0
+offset_right = 436.0
+offset_bottom = 485.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "By the way, when something is referred to as
++4 or +1, it means the amount of coins you can
+get from it."
+label_settings = SubResource("LabelSettings_u2rf6")
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/Coins"]
+position = Vector2(360, 336)
+scale = Vector2(0.72, 0.72)
+texture = ExtResource("5_y72e6")
+
+[node name="Base" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_left = 344.0
+offset_top = -248.0
+offset_right = 384.0
+offset_bottom = -208.0
+
+[node name="Label3" type="Label" parent="Panel/Base"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 92.0
+offset_top = 252.0
+offset_right = 418.0
+offset_bottom = 292.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Base!"
+label_settings = SubResource("LabelSettings_7a8ye")
+
+[node name="Label4" type="Label" parent="Panel/Base"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 92.0
+offset_top = 293.0
+offset_right = 455.0
+offset_bottom = 497.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "The base is important
+- when it lights up
+green, you're clear to
+drop off your pizzas!
+Look at the top of the
+screen during the
+game for the
+requirement."
+label_settings = SubResource("LabelSettings_dpxxx")
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/Base"]
+position = Vector2(360, 376)
+scale = Vector2(0.72, 0.72)
+texture = ExtResource("6_dpxxx")
+
+[node name="Label3" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.0
+offset_top = 315.0
+offset_right = 372.0
+offset_bottom = 345.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "The game will begin as soon as you press Start."
+label_settings = SubResource("LabelSettings_y6ycx")
+horizontal_alignment = 2
+
+[node name="StartButton" type="TextureButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 392.0
+offset_top = 304.0
+offset_right = 616.0
+offset_bottom = 346.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_y6ycx")
+texture_hover = ExtResource("7_dpxxx")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Panel/StartButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -15.0
+offset_right = 26.5
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start!"
+label_settings = SubResource("LabelSettings_dk2oa")
+horizontal_alignment = 1
+
+[node name="BackButton" type="TextureButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -592.0
+offset_top = 304.0
+offset_right = -368.0
+offset_bottom = 346.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_y6ycx")
+texture_hover = ExtResource("7_dpxxx")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Panel/BackButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -15.0
+offset_right = 26.5
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "<- Back"
+label_settings = SubResource("LabelSettings_dk2oa")
+horizontal_alignment = 1
+
+[connection signal="button_up" from="Panel/StartButton" to="." method="_on_start_button_up"]
+[connection signal="button_up" from="Panel/BackButton" to="." method="_on_back_button_up"]

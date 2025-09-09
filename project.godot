@@ -10,10 +10,12 @@ config_version=5
 
 [application]
 
-config/name="PizzaCollect"
+config/name="Solar's Magnificent Pizza Collecting Game!"
 run/main_scene="uid://dwbr6gctt250g"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+config/icon="uid://c0v7k84p26rw6"
 
 [autoload]
 
